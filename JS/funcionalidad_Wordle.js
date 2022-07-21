@@ -42,7 +42,6 @@ let colores = {
 let fila = 6;
 let columna = 5;
 
-
 function pintar_tablero(){
     for (let indice_fila = 0; indice_fila < fila; indice_fila++) {
         for (let indice_columna = 0; indice_columna < columna; indice_columna++) {
@@ -76,7 +75,17 @@ function inicio() {
     }
 }
 
-let palabra_correcta = "birra"
+let lista_palabras = ["birra", "rombo", "tigre", "perro", "diego"];
+let lista_palabras_invitadas = ["birra", "rombo", "tigre", "perro", "diego", "oveja", "perez", "coche"];
+
+lista_palabras_invitadas = lista_palabras_invitadas.concat(lista_palabras);
+
+let palabras_aleatorias = lista_palabras[Math.floor(Math.random() * lista_palabras.length)].toLocaleUpperCase();
+
+console.log("El arreglo es: ");
+console.log(lista_palabras);
+console.log("Y un aleatorio es: ");
+console.log(palabras_aleatorias);
 
 function guardar_respuesta(indice){
     for (let indice_columna = 0; indice_columna < columna; indice_columna++) {
@@ -86,17 +95,17 @@ function guardar_respuesta(indice){
     revisar_resultado(respuestas[indice], indice)
 }
 
-let palabra_slipt_correcta = palabra_correcta.split("");
+let palabra_correcta = palabras_aleatorias.split("");
 
 function revisar_resultado(respuesta, indice){
     respuesta.forEach(function(item, index){
-        if(item === palabra_slipt_correcta[index]){
+        if(item === palabra_correcta[index]){
             color_tablero[indice][index] = colores.VERDE;
         }
-        else if (palabra_slipt_correcta.includes(item)) {
+        else if (palabra_correcta.includes(item)) {
             color_tablero[indice][index] = colores.AMARILLO;
         }
-        else if (!palabra_slipt_correcta.includes(item)) {
+        else if (!palabra_correcta.includes(item)) {
             color_tablero[indice][index] = colores.GRIS;
         }
     });
