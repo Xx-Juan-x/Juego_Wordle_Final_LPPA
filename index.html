@@ -7,15 +7,32 @@
     <title>Wordle</title>
     <link rel="stylesheet" href="/CSS/estilos_portada.css">
     <link rel="stylesheet" href="/CSS/reset.css">
+    <script src="/JS/menu.js" defer></script>
 </head>
 <body>
     <main>
         <h1>Wordle</h1>
-        <button type="submit">Jugar</button>
-        <!--<form action="">
-            <label>Nombre de jugador</label>
-            <input type="text" placeholder="Usuario">
-        </form>-->
+        <button type="button" class="abrir-modal" data-open="modal1">Jugar</button>
     </main>
+    <form id="modal1" class="modal">
+        <div class="modal-contenedor">
+            <header class="modal-encabezado">
+                <button class="cerrar-modal"  type="button" data-close="modal1">&times;</button>
+            </header>
+            <section class="modal-contenido">
+                <h2 class="modal-titulo">JUGADOR</h2>
+                <input class="input-jugador" type="text" placeholder="Nombre del Jugador">
+                <p class="error">El usuario no debe estar vacio.</p>
+                <button class="boton-ok" type="submit" id="usuario">OK</button>
+            </section>
+        </div>
+    </form>
 </body>
 </html>
+
+<!--
+    1.cuando apreta el boton, tenes que capturar que el formulario fue enviado
+    2.si el input no este vacio
+    3.usar localstorage para guardar el nombre LocalStorage.setItem("nombre",nombre)
+    4.si no hay error redirecciona con windows.href.
+ -->

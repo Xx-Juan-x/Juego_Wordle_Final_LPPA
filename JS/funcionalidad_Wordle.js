@@ -64,6 +64,20 @@ function pintar_tablero(){
     }
 }
 
+function tabular_input(){
+    document.querySelectorAll("input").forEach((element)=>{
+        element.addEventListener("keydown",function(event){
+            let dataIndex = this;
+            setTimeout(function(){
+                var index = parseFloat( dataIndex.getAttribute('data-index'));
+                document.querySelector('[data-index="' + (index + 1).toString() + '"]').focus();
+            },100)
+        });
+    })
+}
+tabular_input();
+
+
 function inicio() {
     for (let indice = 0; indice < fila; indice++) {
         let fieldset = document.getElementById(`row${indice}`);
@@ -75,7 +89,8 @@ function inicio() {
     }
 }
 
-let lista_palabras = ["birra", "rombo", "tigre", "perro", "diego"];
+//let lista_palabras = ["birra", "rombo", "tigre", "perro", "diego"];
+let lista_palabras = [ "perro"];
 let lista_palabras_invitadas = ["birra", "rombo", "tigre", "perro", "diego", "oveja", "perez", "coche"];
 
 lista_palabras_invitadas = lista_palabras_invitadas.concat(lista_palabras);
@@ -89,7 +104,7 @@ console.log(palabras_aleatorias);
 
 function guardar_respuesta(indice){
     for (let indice_columna = 0; indice_columna < columna; indice_columna++) {
-        let input = document.getElementById(`f${indice}c${indice_columna}`).value;
+        let input = document.getElementById(`f${indice}c${indice_columna}`).value.toUpperCase();
         respuestas[indice].push(input);
     }
     revisar_resultado(respuestas[indice], indice)
@@ -98,16 +113,28 @@ function guardar_respuesta(indice){
 let palabra_correcta = palabras_aleatorias.split("");
 
 function revisar_resultado(respuesta, indice){
+
     respuesta.forEach(function(item, index){
+
         if(item === palabra_correcta[index]){
+            respuesta[index] = "_";
+            //palabra_correcta[index].indexOf(item);
+            palabra_correcta[index] = palabra_correcta[index].substring(0, index) + " " + palabra_correcta[index].substring(index + 1);
             color_tablero[indice][index] = colores.VERDE;
         }
-        else if (palabra_correcta.includes(item)) {
-            color_tablero[indice][index] = colores.AMARILLO;
+    });
+    respuesta.forEach(function(item, index){
+        if(item != "_"){
+            console.log(item);
+
+            if (palabra_correcta.includes(item)) {
+                color_tablero[indice][index] = colores.AMARILLO;
+            }
+            else if (!palabra_correcta.includes(item)) {
+                color_tablero[indice][index] = colores.GRIS;
+            }
         }
-        else if (!palabra_correcta.includes(item)) {
-            color_tablero[indice][index] = colores.GRIS;
-        }
+
     });
     pintar_tablero();
 }
