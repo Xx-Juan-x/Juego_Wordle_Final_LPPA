@@ -1,13 +1,38 @@
 body{
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
+    background-image: url(../Imágenes/gardens.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
 }
 
-form h2{
+main{
+    height: 100vh;
+    margin-top: 100px;
+}
+
+
+header{
+    background-color: aqua;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    top: 0;
+}
+
+nav{
+    background-color: burlywood;
+    width: 100%;
+}
+
+
+/*nav h1{
     font-size: 30px;
     font-weight: 600;
     margin: 20px;
-}
+}*/
 
 main{
     min-width: 400px;
@@ -36,7 +61,27 @@ input{
     font-size: 30px;
     font-family: sans-serif;
     border: 3px solid black;
+    cursor: none;
 }
+
+ html *{
+    cursor:none !important;
+ }
+/*.input{
+    animation: 0.5s linear flipping;
+}
+
+@keyframes flipping{
+    0%{
+        transform: rotateY(0deg);
+    }
+    50%{
+        transform: rotateY(90deg);
+    }
+    100%{
+        transform: rotateY(0deg);
+    }
+}*/
 
 
 /*Estilos js*/

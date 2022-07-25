@@ -35,7 +35,6 @@ function click_abrir_modal(){
 click_abrir_modal();
 
 function click_cerrar_modal(){
-    console.log(cerrar_modal);
     for(let modal of cerrar_modal) {
         modal.addEventListener("click", function() {
         let modalId = this.dataset.close;

@@ -67,11 +67,33 @@ function pintar_tablero(){
 function tabular_input(){
     document.querySelectorAll("input").forEach((element)=>{
         element.addEventListener("keydown",function(event){
-            let dataIndex = this;
-            setTimeout(function(){
-                var index = parseFloat( dataIndex.getAttribute('data-index'));
-                document.querySelector('[data-index="' + (index + 1).toString() + '"]').focus();
-            },100)
+            console.log(event.keyCode);
+            if(event.keyCode == 8){
+                if(this.value.length == 0){
+                    let dataIndex = this;
+                    var index = parseFloat( dataIndex.getAttribute('data-index'));
+                    document.querySelector('[data-index="' + (index - 1).toString() + '"]').focus();
+                    document.querySelector('[data-index="' + (index - 1).toString() + '"]').value = "";
+                }
+                else{
+
+                }
+                /*let dataIndex = this;
+                setTimeout(function(){
+                    var index = parseFloat( dataIndex.getAttribute('data-index'));
+                    document.querySelector('[data-index="' + (index - 1).toString() + '"]').focus();
+                },100)*/
+            }
+            else if(event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode == 192){
+                let dataIndex = this;
+                setTimeout(function(){
+                    var index = parseFloat( dataIndex.getAttribute('data-index'));
+                    document.querySelector('[data-index="' + (index + 1).toString() + '"]').focus();
+                },100)
+            }
+            else{
+                event.preventDefault();
+            }
         });
     })
 }
