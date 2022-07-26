@@ -62,40 +62,43 @@ function pintar_tablero(){
             }
         }
     }
-   let numero_row = document.querySelector("fieldset.active").getAttribute("data-row");
-   document.getElementById("row" + numero_row).classList.remove("active");
-   numero_row++;
-   document.getElementById("row" + numero_row).classList.add("active");
+    habilitar_deshabilitar_row();
 }
 
+function habilitar_deshabilitar_row(){
+    let numero_row = document.querySelector("fieldset.active").getAttribute("data-row");
+    document.getElementById("row" + numero_row).classList.remove("active");
+    numero_row++;
+    document.getElementById("row" + numero_row).classList.add("active");
+
+    document.getElementById("row" + numero_row).querySelector("input[data-index='1']").focus();
+    tabular_input();
+}
+
+
 function tabular_input(){
-    document.querySelectorAll("input").forEach((element)=>{
+    document.querySelectorAll(".active input").forEach((element)=>{
         element.addEventListener("keydown",function(event){
             console.log(event.keyCode);
             if(event.keyCode == 8){
                 if(this.value.length == 0){
                     let dataIndex = this;
-                    var index = parseFloat( dataIndex.getAttribute('data-index'));
+                    var index = parseFloat(dataIndex.getAttribute('data-index'));
                     if (index != 1) {
-                        document.querySelector('[data-index="' + (index - 1).toString() + '"]').focus();
-                        document.querySelector('[data-index="' + (index - 1).toString() + '"]').value = "";
+                        document.querySelector('.active [data-index="' + (index - 1).toString() + '"]').focus();
+                        document.querySelector('.active [data-index="' + (index - 1).toString() + '"]').value = "";
                     }
                 }
                 else{
 
                 }
-                /*let dataIndex = this;
-                setTimeout(function(){
-                    var index = parseFloat( dataIndex.getAttribute('data-index'));
-                    document.querySelector('[data-index="' + (index - 1).toString() + '"]').focus();
-                },100)*/
             }
             else if(event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode == 192){
                 let dataIndex = this;
                 setTimeout(function(){
                     let index = parseFloat(dataIndex.getAttribute('data-index'));
                     if (index != 5) {
-                        document.querySelector('[data-index="' + (index + 1).toString() + '"]').focus();
+                        document.querySelector('.active [data-index="' + (index + 1).toString() + '"]').focus();
                     }
                 },50)
             }
@@ -118,19 +121,38 @@ function inicio() {
         }
     }
 }
+let palabras_aleatorias;
+let palabra_correcta;
+let lista_palabras = [];
+let con_acento = false;
+fetch("palabras_juego.json")
+.then(response => {
+    return response.json();
+})
+.then((data)=>{
 
-//let lista_palabras = ["birra", "rombo", "tigre", "perro", "diego"];
-let lista_palabras = ["perro"];
-let lista_palabras_invitadas = ["birra", "rombo", "tigre", "perro", "diego", "oveja", "perez", "coche"];
+    data.forEach((element)=>{
+        if(con_acento == true){
+            if (element.includes("á") || element.includes("é") || element.includes("í") || element.includes("ó") || element.includes("ú")) {
+                lista_palabras.push(element);
+            }
+        }
+        else{
+            if (!element.includes("á") && !element.includes("é") && !element.includes("í") && !element.includes("ó") && !element.includes("ú")) {
+                lista_palabras.push(element);
+            }
+        }
+    });
 
-lista_palabras_invitadas = lista_palabras_invitadas.concat(lista_palabras);
+    console.log(lista_palabras);
 
-let palabras_aleatorias = lista_palabras[Math.floor(Math.random() * lista_palabras.length)].toLocaleUpperCase();
-
-console.log("El arreglo es: ");
-console.log(lista_palabras);
-console.log("Y un aleatorio es: ");
-console.log(palabras_aleatorias);
+    palabras_aleatorias = lista_palabras[Math.floor(Math.random() * lista_palabras.length)].toUpperCase();
+    palabra_correcta = palabras_aleatorias.split("");
+    /*console.log("El arreglo es: ");
+    console.log(lista_palabras);*/
+    console.log("Y un aleatorio es: ");
+    console.log(palabras_aleatorias);
+})
 
 function guardar_respuesta(indice){
     respuestas[indice] = [];
@@ -138,7 +160,6 @@ function guardar_respuesta(indice){
         let input = document.getElementById(`f${indice}c${indice_columna}`).value.toUpperCase();
         respuestas[indice].push(input);
     }
-    console.log(respuestas);
 
     let row_vacio = false;
     respuestas[indice].forEach(function(element){
@@ -146,18 +167,26 @@ function guardar_respuesta(indice){
             row_vacio = true;
         }
     });
-    if (row_vacio == false) {
-        revisar_resultado(respuestas[indice], indice);
+    if (row_vacio == false){
+        let palabra_completa = respuestas[indice].join("");
+        console.log(palabra_completa);
+        if (!lista_palabras.includes(palabra_completa.toLowerCase())){
+            alert("La palabra no existe");
+        }
+        else{
+            revisar_resultado(respuestas[indice], indice);
+        }
     }
     else{
         alert("Debe completar toda la fila");
     }
 }
 
-let palabra_correcta = palabras_aleatorias.split("");
+
+console.log(palabra_correcta);
 
 function revisar_resultado(respuesta, indice){
-
+    console.log(respuesta);
     respuesta.forEach(function(item, index){
 
         if(item === palabra_correcta[index]){

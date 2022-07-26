@@ -83,8 +83,29 @@ input{
     pointer-events: all;
 }
 
-.animation{
+/*Estilos js*/
+
+.verde{
+    background-color: rgb(5, 222, 5);
+    border: 3px solid rgb(5, 222, 5);
     animation: 0.5s linear flipping;
+}
+
+.amarillo{
+    background-color: yellow;
+    border: 3px solid yellow;
+    animation: 0.5s linear flipping;
+}
+
+.gris{
+    background-color: gray;
+    border: 3px solid gray;
+    animation: 0.5s linear flipping;
+}
+
+.blanco{
+    /*background-color: rgba(255, 255, 255, 0.797);
+    border: 3px solid black;*/
 }
 
 @keyframes flipping{
@@ -97,27 +118,4 @@ input{
     100%{
         transform: rotateY(0deg);
     }
-}*/
-
-
-/*Estilos js*/
-
-.verde{
-    background-color: green;
-    border: 3px solid green;
-}
-
-.amarillo{
-    background-color: yellow;
-    border: 3px solid yellow;
-}
-
-.gris{
-    background-color: gray;
-    border: 3px solid gray;
-}
-
-.blanco{
-    background-color: white;
-    border: 3px solid black;
 }
