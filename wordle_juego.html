@@ -10,58 +10,59 @@
     <script src="JS/funcionalidad_Wordle.js" defer></script>
 </head>
 <body>
-    <header>
+    <header class="encabezado">
         <h1>WORDLE</h1>
-        <nav>
-            <button class="guardar-partida">Guardar Partida</button>
-            <button class="nueva-partida">Nueva Partida</button>
-            <button class="cargar-partida">Cargar Partida</button>
+        <nav class="barra-navegacion">
+            <button class="guardar-partida button-header">Guardar Partida</button>
+            <button class="nueva-partida button-header">Nueva Partida</button>
+            <button class="cargar-partida button-header">Cargar Partida</button>
+            <button class="contacto button-header">Contacto</button>
         </nav>
     </header>
 
     <main>
         <form class="conteiner-wordle" id="inputform">
-            <fieldset id="row0">
-                <input class="letra-1" maxlength="1" type="text" autocomplete="off" name="" id="f0c0" data-index="1">
+            <fieldset id="row0" class="active" data-row="0">
+                <input class="letra-1" maxlength="1" type="text" autocomplete="off" name="" autofocus id="f0c0" data-index="1">
                 <input class="letra-2" maxlength="1" type="text" autocomplete="off" name="" id="f0c1" data-index="2">
                 <input class="letra-3" maxlength="1" type="text" autocomplete="off" name="" id="f0c2" data-index="3">
                 <input class="letra-4" maxlength="1" type="text" autocomplete="off" name="" id="f0c3" data-index="4">
                 <input class="letra-5" maxlength="1" type="text" autocomplete="off" name="" id="f0c4" data-index="5">
             </fieldset>
-            <fieldset id="row1">
-                <input class="letra-1" maxlength="1" type="text" name="" id="f1c0">
-                <input class="letra-2" maxlength="1" type="text" name="" id="f1c1">
-                <input class="letra-3" maxlength="1" type="text" name="" id="f1c2">
-                <input class="letra-4" maxlength="1" type="text" name="" id="f1c3">
-                <input class="letra-5" maxlength="1" type="text" name="" id="f1c4">
+            <fieldset id="row1" data-row="1">
+                <input class="letra-1" maxlength="1" type="text" autocomplete="off" name="" id="f1c0" data-index="1">
+                <input class="letra-2" maxlength="1" type="text" autocomplete="off" name="" id="f1c1" data-index="2">
+                <input class="letra-3" maxlength="1" type="text" autocomplete="off" name="" id="f1c2" data-index="3">
+                <input class="letra-4" maxlength="1" type="text" autocomplete="off" name="" id="f1c3" data-index="4">
+                <input class="letra-5" maxlength="1" type="text" autocomplete="off" name="" id="f1c4" data-index="5">
             </fieldset>
-            <fieldset id="row2">
-                <input class="letra-1" maxlength="1" type="text" name="" id="f2c0">
-                <input class="letra-2" maxlength="1" type="text" name="" id="f2c1">
-                <input class="letra-3" maxlength="1" type="text" name="" id="f2c2">
-                <input class="letra-4" maxlength="1" type="text" name="" id="f2c3">
-                <input class="letra-5" maxlength="1" type="text" name="" id="f2c4">
+            <fieldset id="row2" data-row="2">
+                <input class="letra-1" maxlength="1" type="text" autocomplete="off" name="" id="f2c0" data-index="1">
+                <input class="letra-2" maxlength="1" type="text" autocomplete="off" name="" id="f2c1" data-index="2">
+                <input class="letra-3" maxlength="1" type="text" autocomplete="off" name="" id="f2c2" data-index="3">
+                <input class="letra-4" maxlength="1" type="text" autocomplete="off" name="" id="f2c3" data-index="4">
+                <input class="letra-5" maxlength="1" type="text" autocomplete="off" name="" id="f2c4" data-index="5">
             </fieldset>
-            <fieldset id="row3">
-                <input class="letra-1" maxlength="1" type="text" name="" id="f3c0">
-                <input class="letra-2" maxlength="1" type="text" name="" id="f3c1">
-                <input class="letra-3" maxlength="1" type="text" name="" id="f3c2">
-                <input class="letra-4" maxlength="1" type="text" name="" id="f3c3">
-                <input class="letra-5" maxlength="1" type="text" name="" id="f3c4">
+            <fieldset id="row3" data-row="3">
+                <input class="letra-1" maxlength="1" type="text" autocomplete="off" name="" id="f3c0" data-index="1">
+                <input class="letra-2" maxlength="1" type="text" autocomplete="off" name="" id="f3c1" data-index="2">
+                <input class="letra-3" maxlength="1" type="text" autocomplete="off" name="" id="f3c2" data-index="3">
+                <input class="letra-4" maxlength="1" type="text" autocomplete="off" name="" id="f3c3" data-index="4">
+                <input class="letra-5" maxlength="1" type="text" autocomplete="off" name="" id="f3c4" data-index="5">
             </fieldset>
-            <fieldset id="row4">
-                <input class="letra-1" maxlength="1" type="text" name="" id="f4c0">
-                <input class="letra-2" maxlength="1" type="text" name="" id="f4c1">
-                <input class="letra-3" maxlength="1" type="text" name="" id="f4c2">
-                <input class="letra-4" maxlength="1" type="text" name="" id="f4c3">
-                <input class="letra-5" maxlength="1" type="text" name="" id="f4c4">
+            <fieldset id="row4" data-row="4">
+                <input class="letra-1" maxlength="1" type="text" autocomplete="off" name="" id="f4c0" data-index="1">
+                <input class="letra-2" maxlength="1" type="text" autocomplete="off" name="" id="f4c1" data-index="2">
+                <input class="letra-3" maxlength="1" type="text" autocomplete="off" name="" id="f4c2" data-index="3">
+                <input class="letra-4" maxlength="1" type="text" autocomplete="off" name="" id="f4c3" data-index="4">
+                <input class="letra-5" maxlength="1" type="text" autocomplete="off" name="" id="f4c4" data-index="5">
             </fieldset>
-            <fieldset id="row5">
-                <input class="letra-1" maxlength="1" type="text" name="" id="f5c0">
-                <input class="letra-2" maxlength="1" type="text" name="" id="f5c1">
-                <input class="letra-3" maxlength="1" type="text" name="" id="f5c2">
-                <input class="letra-4" maxlength="1" type="text" name="" id="f5c3">
-                <input class="letra-5" maxlength="1" type="text" name="" id="f5c4">
+            <fieldset id="row5" data-row="5">
+                <input class="letra-1" maxlength="1" type="text" autocomplete="off" name="" id="f5c0" data-index="1">
+                <input class="letra-2" maxlength="1" type="text" autocomplete="off" name="" id="f5c1" data-index="2">
+                <input class="letra-3" maxlength="1" type="text" autocomplete="off" name="" id="f5c2" data-index="3">
+                <input class="letra-4" maxlength="1" type="text" autocomplete="off" name="" id="f5c3" data-index="4">
+                <input class="letra-5" maxlength="1" type="text" autocomplete="off" name="" id="f5c4" data-index="5">
             </fieldset>
         </form>
     </main>

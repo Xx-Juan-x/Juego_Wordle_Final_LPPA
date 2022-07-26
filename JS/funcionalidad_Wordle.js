@@ -62,6 +62,10 @@ function pintar_tablero(){
             }
         }
     }
+   let numero_row = document.querySelector("fieldset.active").getAttribute("data-row");
+   document.getElementById("row" + numero_row).classList.remove("active");
+   numero_row++;
+   document.getElementById("row" + numero_row).classList.add("active");
 }
 
 function tabular_input(){
@@ -72,8 +76,10 @@ function tabular_input(){
                 if(this.value.length == 0){
                     let dataIndex = this;
                     var index = parseFloat( dataIndex.getAttribute('data-index'));
-                    document.querySelector('[data-index="' + (index - 1).toString() + '"]').focus();
-                    document.querySelector('[data-index="' + (index - 1).toString() + '"]').value = "";
+                    if (index != 1) {
+                        document.querySelector('[data-index="' + (index - 1).toString() + '"]').focus();
+                        document.querySelector('[data-index="' + (index - 1).toString() + '"]').value = "";
+                    }
                 }
                 else{
 
@@ -87,9 +93,11 @@ function tabular_input(){
             else if(event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode == 192){
                 let dataIndex = this;
                 setTimeout(function(){
-                    var index = parseFloat( dataIndex.getAttribute('data-index'));
-                    document.querySelector('[data-index="' + (index + 1).toString() + '"]').focus();
-                },100)
+                    let index = parseFloat(dataIndex.getAttribute('data-index'));
+                    if (index != 5) {
+                        document.querySelector('[data-index="' + (index + 1).toString() + '"]').focus();
+                    }
+                },50)
             }
             else{
                 event.preventDefault();
@@ -112,7 +120,7 @@ function inicio() {
 }
 
 //let lista_palabras = ["birra", "rombo", "tigre", "perro", "diego"];
-let lista_palabras = [ "perro"];
+let lista_palabras = ["perro"];
 let lista_palabras_invitadas = ["birra", "rombo", "tigre", "perro", "diego", "oveja", "perez", "coche"];
 
 lista_palabras_invitadas = lista_palabras_invitadas.concat(lista_palabras);
@@ -125,11 +133,25 @@ console.log("Y un aleatorio es: ");
 console.log(palabras_aleatorias);
 
 function guardar_respuesta(indice){
+    respuestas[indice] = [];
     for (let indice_columna = 0; indice_columna < columna; indice_columna++) {
         let input = document.getElementById(`f${indice}c${indice_columna}`).value.toUpperCase();
         respuestas[indice].push(input);
     }
-    revisar_resultado(respuestas[indice], indice)
+    console.log(respuestas);
+
+    let row_vacio = false;
+    respuestas[indice].forEach(function(element){
+        if (element == "") {
+            row_vacio = true;
+        }
+    });
+    if (row_vacio == false) {
+        revisar_resultado(respuestas[indice], indice);
+    }
+    else{
+        alert("Debe completar toda la fila");
+    }
 }
 
 let palabra_correcta = palabras_aleatorias.split("");
@@ -145,6 +167,7 @@ function revisar_resultado(respuesta, indice){
             color_tablero[indice][index] = colores.VERDE;
         }
     });
+
     respuesta.forEach(function(item, index){
         if(item != "_"){
             console.log(item);
@@ -158,6 +181,7 @@ function revisar_resultado(respuesta, indice){
         }
 
     });
+
     pintar_tablero();
 }
 

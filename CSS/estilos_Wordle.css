@@ -1,44 +1,53 @@
 body{
     box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace;
     background-image: url(../Imágenes/gardens.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
-}
-
-main{
-    height: 100vh;
-    margin-top: 100px;
 }
 
 
-header{
-    background-color: aqua;
-    position: fixed;
+.encabezado{
     width: 100%;
-    display: flex;
-    flex-direction: row;
     top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-nav{
-    background-color: burlywood;
-    width: 100%;
+.barra-navegacion{
+    padding: 10px;
+    display: inherit;
+    justify-content: space-between;
+
 }
 
-
-/*nav h1{
-    font-size: 30px;
+.encabezado h1{
+    font-size: 50px;
     font-weight: 600;
-    margin: 20px;
-}*/
+    text-align: center;
+    padding: 20px 0;
+    color: rgb(255, 255, 255);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.button-header{
+    padding: 5px;
+    margin: 0 10px;
+    font-size: 15px;
+    color: white;
+    font-weight: 600;
+    background-color: greenyellow;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
 
 main{
-    min-width: 400px;
+    height: 100vh;
 }
 
 form{
+    min-width: 370px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -54,20 +63,27 @@ fieldset{
 input{
     width: 45px;
     height: 45px;
-    padding: 5px;
-    margin: 5px;
+    padding: 8px;
+    margin: 2px;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 30px;
     font-family: sans-serif;
     border: 3px solid black;
-    cursor: none;
+    color: transparent;
+    text-shadow: 0 0 0 black;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.797);
+    pointer-events: none;
 }
 
- html *{
-    cursor:none !important;
- }
-/*.input{
+.active input{
+    pointer-events: all;
+}
+
+.animation{
     animation: 0.5s linear flipping;
 }
 
