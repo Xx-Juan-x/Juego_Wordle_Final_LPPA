@@ -5,20 +5,12 @@ body{
     background-repeat: no-repeat;
 }
 
-
 .encabezado{
     width: 100%;
     top: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.barra-navegacion{
-    padding: 10px;
-    display: inherit;
-    justify-content: space-between;
-
 }
 
 .encabezado h1{
@@ -30,7 +22,68 @@ body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.button-header{
+.barra-navegacion{
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+ul{
+    list-style: none;
+    border-radius: 6px;
+}
+h2{
+    text-align: center;
+    color: #fff;
+    font-weight: bold !important;
+    font-family:Verdana, Geneva, Tahoma, sans-serif !important;
+    background-color: rgba(0,0,0,0.5);
+    width: 60%;
+    display: block;
+    border-radius: 7px;
+    margin: 0px auto 15px auto !important;
+    padding: 10px !important;
+    display: block !important;
+}
+
+
+.menu li div{
+    background-color: rgb(115, 143, 73);
+    color: white;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    min-width: 100px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.menu li div:hover{
+    color: rgb(29, 38, 10);
+    background-color: #baf27f;
+}
+
+.menu{
+    display: flex;
+    flex-direction: row;
+}
+
+.menu li{
+    text-align:center;
+    filter:alpha(opacity=90);
+    -moz-opacity:.90;opacity:.90;
+}
+
+.menu li ul{
+    display: none;
+}
+
+.menu li:hover ul {
+    display:block;
+    position: absolute;
+}
+
+
+/*.button-header{
     padding: 5px;
     margin: 0 10px;
     font-size: 15px;
@@ -40,7 +93,7 @@ body{
     border: none;
     border-radius: 5px;
     outline: none;
-}
+}*/
 
 main{
     height: 100vh;
@@ -79,11 +132,12 @@ input{
     pointer-events: none;
 }
 
+
+/*Estilos js*/
+
 .active input{
     pointer-events: all;
 }
-
-/*Estilos js*/
 
 .verde{
     background-color: rgb(5, 222, 5);
@@ -101,11 +155,6 @@ input{
     background-color: gray;
     border: 3px solid gray;
     animation: 0.5s linear flipping;
-}
-
-.blanco{
-    /*background-color: rgba(255, 255, 255, 0.797);
-    border: 3px solid black;*/
 }
 
 @keyframes flipping{

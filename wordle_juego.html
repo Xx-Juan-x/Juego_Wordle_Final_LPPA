@@ -13,14 +13,27 @@
     <header class="encabezado">
         <h1>WORDLE</h1>
         <nav class="barra-navegacion">
-            <button class="guardar-partida button-header">Guardar Partida</button>
-            <button class="nueva-partida button-header">Nueva Partida</button>
-            <button class="cargar-partida button-header">Cargar Partida</button>
-            <button class="contacto button-header">Contacto</button>
+            <ul class="menu">
+                <li><div>Modo de Juego</div>
+                  <ul>
+                    <li><div id="conTilde">Con Tildes</div></li>
+                    <li><div id="sinTilde">Sin Tildes</div></li>
+                  </ul>
+                </li>
+                <li><div>Partidas</div>
+                    <ul>
+                        <li><div>Nueva Partida</div></li>
+                        <li><div>Guardar Partida</div></li>
+                        <li><div>Cargar Partida</div></li>
+                    </ul>
+                </li>
+                <li><div>Contacto</div></li>
+            </ul>
         </nav>
     </header>
-
     <main>
+        <h2>Modo de juego: <span>SIN TILDE</span></h2>
+        <div id="contrareloj"></div>
         <form class="conteiner-wordle" id="inputform">
             <fieldset id="row0" class="active" data-row="0">
                 <input class="letra-1" maxlength="1" type="text" autocomplete="off" name="" autofocus id="f0c0" data-index="1">

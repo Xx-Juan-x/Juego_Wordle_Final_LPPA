@@ -56,9 +56,9 @@ function pintar_tablero(){
                 case colores.GRIS:
                     input.classList.add("gris");
                     break;
-                case colores.BLANCO:
+                /*case colores.BLANCO:
                     input.classList.add("blanco");
-                    break;
+                    break;*/
             }
         }
     }
@@ -72,14 +72,14 @@ function habilitar_deshabilitar_row(){
     document.getElementById("row" + numero_row).classList.add("active");
 
     document.getElementById("row" + numero_row).querySelector("input[data-index='1']").focus();
+    palabra_correcta = palabras_aleatorias.split("");
     tabular_input();
 }
-
 
 function tabular_input(){
     document.querySelectorAll(".active input").forEach((element)=>{
         element.addEventListener("keydown",function(event){
-            console.log(event.keyCode);
+            //console.log(event.keyCode);
             if(event.keyCode == 8){
                 if(this.value.length == 0){
                     let dataIndex = this;
@@ -88,9 +88,6 @@ function tabular_input(){
                         document.querySelector('.active [data-index="' + (index - 1).toString() + '"]').focus();
                         document.querySelector('.active [data-index="' + (index - 1).toString() + '"]').value = "";
                     }
-                }
-                else{
-
                 }
             }
             else if(event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode == 192){
@@ -124,35 +121,70 @@ function inicio() {
 let palabras_aleatorias;
 let palabra_correcta;
 let lista_palabras = [];
-let con_acento = false;
-fetch("palabras_juego.json")
-.then(response => {
-    return response.json();
-})
-.then((data)=>{
+let con_tilde = false;
+let id_conTilde = document.getElementById("conTilde");
+let id_sinTilde = document.getElementById("sinTilde");
+let contrareloj = document.getElementById("contrareloj");
+let timer = 300;
 
-    data.forEach((element)=>{
-        if(con_acento == true){
-            if (element.includes("á") || element.includes("é") || element.includes("í") || element.includes("ó") || element.includes("ú")) {
-                lista_palabras.push(element);
-            }
-        }
-        else{
-            if (!element.includes("á") && !element.includes("é") && !element.includes("í") && !element.includes("ó") && !element.includes("ú")) {
-                lista_palabras.push(element);
-            }
-        }
+setInterval(function(){
+    timer--;
+    contrareloj.innerHTML = timer;
+},1000);
+
+id_conTilde.addEventListener("click", function(event){
+    con_tilde = true;
+    fetch_palabras();
+    document.querySelectorAll(".active input").forEach((element)=>{
+        element.value = "";
     });
+    document.querySelector(".active [data-index='1']").focus();
+    document.querySelector("div span").innerHTML = "CON TILDE";
+});
 
-    console.log(lista_palabras);
+id_sinTilde.addEventListener("click", function(event){
+    con_tilde = false;
+    fetch_palabras();
+    document.querySelectorAll(".active input").forEach((element)=>{
+        element.value = "";
+    });
+    document.querySelector(".active [data-index='1']").focus();
+    document.querySelector("div span").innerHTML = "SIN TILDE";
+});
+fetch_palabras();
+function fetch_palabras(){
+    lista_palabras = [];
+    fetch("palabras_juego.json")
+    .then(response => {
+        return response.json();
+    })
+    .then((data)=>{
 
-    palabras_aleatorias = lista_palabras[Math.floor(Math.random() * lista_palabras.length)].toUpperCase();
-    palabra_correcta = palabras_aleatorias.split("");
-    /*console.log("El arreglo es: ");
-    console.log(lista_palabras);*/
-    console.log("Y un aleatorio es: ");
-    console.log(palabras_aleatorias);
-})
+        data.forEach((element)=>{
+
+            if(con_tilde == true){
+                if (element.includes("á") || element.includes("é") || element.includes("í") || element.includes("ó") || element.includes("ú")) {
+                    lista_palabras.push(element);
+                }
+            }
+            else{
+                if (!element.includes("á") && !element.includes("é") && !element.includes("í") && !element.includes("ó") && !element.includes("ú")) {
+                    lista_palabras.push(element);
+                }
+            }
+        });
+
+        console.log(lista_palabras);
+
+        palabras_aleatorias = lista_palabras[Math.floor(Math.random() * lista_palabras.length)].toUpperCase();
+        palabra_correcta = palabras_aleatorias.split("");
+        /*console.log("El arreglo es: ");
+        console.log(lista_palabras);*/
+        console.log("Y un aleatorio es: ");
+        console.log(palabras_aleatorias);
+    })
+}
+
 
 function guardar_respuesta(indice){
     respuestas[indice] = [];
@@ -169,7 +201,6 @@ function guardar_respuesta(indice){
     });
     if (row_vacio == false){
         let palabra_completa = respuestas[indice].join("");
-        console.log(palabra_completa);
         if (!lista_palabras.includes(palabra_completa.toLowerCase())){
             alert("La palabra no existe");
         }
@@ -186,9 +217,9 @@ function guardar_respuesta(indice){
 console.log(palabra_correcta);
 
 function revisar_resultado(respuesta, indice){
-    console.log(respuesta);
-    respuesta.forEach(function(item, index){
+    console.log(palabra_correcta);
 
+    respuesta.forEach(function(item, index){
         if(item === palabra_correcta[index]){
             respuesta[index] = "_";
             //palabra_correcta[index].indexOf(item);
@@ -199,7 +230,6 @@ function revisar_resultado(respuesta, indice){
 
     respuesta.forEach(function(item, index){
         if(item != "_"){
-            console.log(item);
 
             if (palabra_correcta.includes(item)) {
                 color_tablero[indice][index] = colores.AMARILLO;
@@ -210,7 +240,6 @@ function revisar_resultado(respuesta, indice){
         }
 
     });
-
     pintar_tablero();
 }
 
