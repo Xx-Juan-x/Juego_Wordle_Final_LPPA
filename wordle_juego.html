@@ -17,7 +17,7 @@
                 <li><div>Modo de Juego</div>
                   <ul>
                     <li><div id="conTilde">Con Tildes</div></li>
-                    <li><div id="sinTilde">Sin Tildes</div></li>
+                    <li><div class="active" id="sinTilde">Sin Tildes</div></li>
                   </ul>
                 </li>
                 <li><div>Partidas</div>
@@ -27,13 +27,15 @@
                         <li><div>Cargar Partida</div></li>
                     </ul>
                 </li>
-                <li><div>Contacto</div></li>
+                <li><div class="contacto">Contacto</div></li>
             </ul>
         </nav>
     </header>
     <main>
-        <h2>Modo de juego: <span>SIN TILDE</span></h2>
-        <div id="contrareloj"></div>
+        <div class="modo_juego">
+            <h2>Modo de juego: <span>SIN TILDE</span></h2>
+            <div id="contrareloj"></div>
+        </div>
         <form class="conteiner-wordle" id="inputform">
             <fieldset id="row0" class="active" data-row="0">
                 <input class="letra-1" maxlength="1" type="text" autocomplete="off" name="" autofocus id="f0c0" data-index="1">

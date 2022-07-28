@@ -36,7 +36,6 @@ let colores = {
     VERDE: 1,
     AMARILLO: 2,
     GRIS: 3,
-    BLANCO: 0
 }
 
 let fila = 6;
@@ -56,9 +55,6 @@ function pintar_tablero(){
                 case colores.GRIS:
                     input.classList.add("gris");
                     break;
-                /*case colores.BLANCO:
-                    input.classList.add("blanco");
-                    break;*/
             }
         }
     }
@@ -66,14 +62,20 @@ function pintar_tablero(){
 }
 
 function habilitar_deshabilitar_row(){
-    let numero_row = document.querySelector("fieldset.active").getAttribute("data-row");
-    document.getElementById("row" + numero_row).classList.remove("active");
-    numero_row++;
-    document.getElementById("row" + numero_row).classList.add("active");
+    filas_completadas++;
+    if (filas_completadas < 6) {
+        let numero_row = document.querySelector("fieldset.active").getAttribute("data-row");
+        document.getElementById("row" + numero_row).classList.remove("active");
+        numero_row++;
+        document.getElementById("row" + numero_row).classList.add("active");
 
-    document.getElementById("row" + numero_row).querySelector("input[data-index='1']").focus();
-    palabra_correcta = palabras_aleatorias.split("");
-    tabular_input();
+        document.getElementById("row" + numero_row).querySelector("input[data-index='1']").focus();
+        palabra_correcta = palabras_aleatorias.split("");
+        tabular_input();
+    }
+    else{
+        fin_juego = true;
+    }
 }
 
 function tabular_input(){
@@ -126,32 +128,83 @@ let id_conTilde = document.getElementById("conTilde");
 let id_sinTilde = document.getElementById("sinTilde");
 let contrareloj = document.getElementById("contrareloj");
 let timer = 300;
+let fin_juego = false;
+let filas_completadas = 0;
 
 setInterval(function(){
-    timer--;
-    contrareloj.innerHTML = timer;
+    if (timer > 1) {
+        if (fin_juego == false) {
+            timer--;
+            contrareloj.innerHTML = timer;
+        }
+        if (fin_juego == true && filas_completadas == 6) {
+            setTimeout(function(){
+                contrareloj.innerHTML = "Fin del juego";
+                document.querySelector("fieldset.active").classList.remove("active");
+                alert("Perdiste");
+            },500);
+        }
+    }
+    else{
+        if(fin_juego == false){
+            fin_juego = true;
+            contrareloj.innerHTML = "Fin del juego";
+            document.querySelector("fieldset.active").classList.remove("active");
+            alert("Perdiste");
+        }
+    }
 },1000);
 
-id_conTilde.addEventListener("click", function(event){
-    con_tilde = true;
-    fetch_palabras();
-    document.querySelectorAll(".active input").forEach((element)=>{
-        element.value = "";
+function modo_juego(){
+    id_conTilde.addEventListener("click", function(event){
+        if (!event.target.classList.contains("active")) {
+            timer = 300;
+            con_tilde = true;
+            fetch_palabras();
+            document.querySelectorAll("input").forEach((element)=>{
+                element.value = "";
+                element.classList.remove("verde");
+                element.classList.remove("amarillo");
+                element.classList.remove("gris");
+            });
+            document.querySelector(".active [data-index='1']").focus();
+            document.querySelector("h2 span").innerHTML = "CON TILDE";
+            document.querySelector("fieldset.active").classList.remove("active");
+            document.querySelector("#row0").classList.add("active");
+            document.querySelector("#row0 [data-index='1']").focus();
+            filas_completadas = 0;
+            event.target.classList.add("active");
+            id_sinTilde.classList.remove("active");
+            console.log(event);
+        }
     });
-    document.querySelector(".active [data-index='1']").focus();
-    document.querySelector("div span").innerHTML = "CON TILDE";
-});
 
-id_sinTilde.addEventListener("click", function(event){
-    con_tilde = false;
-    fetch_palabras();
-    document.querySelectorAll(".active input").forEach((element)=>{
-        element.value = "";
+    id_sinTilde.addEventListener("click", function(event){
+        if (!event.target.classList.contains("active")){
+            timer = 300;
+            con_tilde = false;
+            fetch_palabras();
+            document.querySelectorAll("input").forEach((element)=>{
+                element.value = "";
+                element.classList.remove("verde");
+                element.classList.remove("amarillo");
+                element.classList.remove("gris");
+            });
+            document.querySelector(".active [data-index='1']").focus();
+            document.querySelector("h2 span").innerHTML = "SIN TILDE";
+            document.querySelector("fieldset.active").classList.remove("active");
+            document.querySelector("#row0").classList.add("active");
+            document.querySelector("#row0 [data-index='1']").focus();
+            filas_completadas = 0;
+            event.target.classList.add("active");
+            id_conTilde.classList.remove("active");
+        }
     });
-    document.querySelector(".active [data-index='1']").focus();
-    document.querySelector("div span").innerHTML = "SIN TILDE";
-});
+}
+modo_juego();
+
 fetch_palabras();
+
 function fetch_palabras(){
     lista_palabras = [];
     fetch("palabras_juego.json")
@@ -222,11 +275,12 @@ function revisar_resultado(respuesta, indice){
     respuesta.forEach(function(item, index){
         if(item === palabra_correcta[index]){
             respuesta[index] = "_";
-            //palabra_correcta[index].indexOf(item);
             palabra_correcta[index] = palabra_correcta[index].substring(0, index) + " " + palabra_correcta[index].substring(index + 1);
             color_tablero[indice][index] = colores.VERDE;
         }
     });
+
+    let letras_correctas = 0;
 
     respuesta.forEach(function(item, index){
         if(item != "_"){
@@ -238,9 +292,16 @@ function revisar_resultado(respuesta, indice){
                 color_tablero[indice][index] = colores.GRIS;
             }
         }
-
+        else{
+            letras_correctas++;
+        }
     });
+    if (letras_correctas == 5) {
+        fin_juego = true;
+        setTimeout(function(){
+            alert("Ganaste!");
+        },500)
+    }
     pintar_tablero();
 }
-
 inicio();
