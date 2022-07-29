@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wordle</title>
-    <link rel="stylesheet" href="CSS/estilos_Wordle.css">
-    <link rel="stylesheet" href="CSS/reset.css">
-    <script src="JS/funcionalidad_Wordle.js" defer></script>
+    <link rel="stylesheet" href="./CSS/estilos_Wordle.css">
+    <link rel="stylesheet" href="./CSS/reset.css">
+    <script src="./JS/funcionalidad_Wordle.js" defer></script>
 </head>
 <body>
     <header class="encabezado">
@@ -23,8 +23,8 @@
                 <li><div>Partidas</div>
                     <ul>
                         <li><div>Nueva Partida</div></li>
-                        <li><div>Guardar Partida</div></li>
-                        <li><div>Cargar Partida</div></li>
+                        <li><div id="guardarPartida">Guardar Partida</div></li>
+                        <li><div id="cargarPartida">Cargar Partida</div></li>
                     </ul>
                 </li>
                 <li><div class="contacto">Contacto</div></li>
@@ -84,5 +84,27 @@
     <footer>
 
     </footer>
+    <form id="modal1" class="modal modal-perdiste">
+        <div class="modal-contenedor contenedor-perdiste">
+            <header class="modal-encabezado">
+                <span class="cerrar-modal cerrar-perdiste">&times;</span>
+            </header>
+            <section class="modal-contenido">
+                <h2 class="modal-titulo perdiste">PERDISTE</h2>
+                <h3 class="modal-subtitulo">La palabra era:</h3>
+            </section>
+        </div>
+    </form>
+
+    <form id="modal2" class="modal modal-ganaste">
+        <div class="modal-contenedor contenedor-ganaste">
+            <header class="modal-encabezado">
+                <span class="cerrar-modal cerrar-ganaste">&times;</span>
+            </header>
+            <section class="modal-contenido">
+                <h2 class="modal-titulo ganaste">GANASTE</h2>
+            </section>
+        </div>
+    </form>
 </body>
 </html>

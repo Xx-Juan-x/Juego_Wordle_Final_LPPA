@@ -15,7 +15,7 @@ form.addEventListener("submit",(event,element)=>{
         error = true;
     }
     if (error == false){
-        localStorage.setItem("usuario",form.querySelector("input").value);
+        localStorage.setItem("nombre",form.querySelector("input").value);
         window.location.href = "wordle_juego.html";
     }
     else{
