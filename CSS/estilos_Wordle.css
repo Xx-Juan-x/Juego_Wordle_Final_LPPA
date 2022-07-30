@@ -179,7 +179,7 @@ div.active{
 
 /*Estilos modal*/
 
-.modal-perdiste, .modal-ganaste{
+.modal{
     position: fixed;
     z-index: 1;
     left: 0;
@@ -199,16 +199,23 @@ div.active{
     padding: 15px;
     width: 300px;
     height: 150px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(190, 182, 182);
 }
 
-.contenedor-perdiste{
+.modal-contenedor.contenedor-perdiste{
     background-color: #e37676;
     border: 1px solid #e37676;
 }
 
-.contenedor-ganaste{
+.modal-contenedor.contenedor-ganaste{
     background-color: #95fb73;
     border: 1px solid #95fb73;
+}
+
+.modal-contenedor.contenedor-advertencia{
+    background-color: #f2ff00;
+    border: 1px solid #f2ff00;
 }
 
 .modal-encabezado{
@@ -229,20 +236,20 @@ div.active{
     border: none;
 }
 
-.cerrar-ganaste{
+/*.cerrar-ganaste{
     background-color: #95fb73;
 }
 
 .cerrar-perdiste{
     background-color: #e37676;;
-}
+}*/
 .cerrar-modal:hover, .cerrar-modal:focus{
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-.modal-titulo{
+.titulo{
     font-size: 50px;
     font-weight: bold;
     margin: 10px;
@@ -255,5 +262,16 @@ div.active{
 }
 
 .ganaste{
-    color: #4e712b;
+    color: #4f9806;
+}
+
+.advertencia{
+    color: rgb(175, 175, 3);
+}
+
+.mensaje{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
 }

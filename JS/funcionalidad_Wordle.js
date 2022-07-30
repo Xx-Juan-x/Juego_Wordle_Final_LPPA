@@ -142,14 +142,13 @@ let con_tilde = false;
 let id_conTilde = document.getElementById("conTilde");
 let id_sinTilde = document.getElementById("sinTilde");
 let contrareloj = document.getElementById("contrareloj");
-let timer = 300;
+let timer = 500;
 let fin_juego = false;
 let filas_completadas = 0;
+let letras_correctas = 0;
 let guardar_partida = document.getElementById("guardarPartida");
 let cargar_partida = document.getElementById("cargarPartida");
 let modal = document.querySelector(".modal");
-let modal_perdiste = document.getElementById("modal1");
-let modal_ganaste = document.getElementById("modal2");
 let span_cierre = document.querySelector(".cerrar-modal");
 
 setInterval(function(){
@@ -158,12 +157,17 @@ setInterval(function(){
             timer--;
             contrareloj.innerHTML = timer;
         }
-        if (fin_juego == true && filas_completadas == 6) {
+        if (fin_juego == true && filas_completadas == 6 && letras_correctas != 5) {
+            fin_juego = null;
             setTimeout(function(){
                 contrareloj.innerHTML = "Fin del juego";
                 document.querySelector("fieldset.active").classList.remove("active");
-                modal_perdiste.style.display = "flex";
-            },500);
+                modal.style.display = "flex";
+                modal.classList.remove("advertencia");
+                modal.classList.add("perdiste");
+                modal.querySelector("h2").innerHTML = "PERDISTE";
+                modal.querySelector("p").innerHTML = "La paralabra ganadora era: " + palabras_aleatorias;
+            },1000);
         }
     }
     else{
@@ -171,10 +175,15 @@ setInterval(function(){
             fin_juego = true;
             contrareloj.innerHTML = "Fin del juego";
             document.querySelector("fieldset.active").classList.remove("active");
-            modal_perdiste.style.display = "flex";
+            modal.style.display = "flex";
+            modal.classList.remove("advertencia");
+            modal.classList.add("perdiste");
+            modal.querySelector("h2").innerHTML = "PERDISTE";
+            modal.querySelector("p").innerHTML = "La paralabra ganadora era: " + palabras_aleatorias;
         }
     }
 },1000);
+
 
 filtro_palabras();
 
@@ -198,59 +207,55 @@ function filtro_palabras(){
     palabra_correcta = palabras_aleatorias.split("");
 
     /*console.log("El arreglo es: ");
-    console.log(lista_palabras);*/
+    console.log(todas_las_palabras);*/
     console.log("Y un aleatorio es: ");
     console.log(palabras_aleatorias);
 }
 
+id_conTilde.addEventListener("click",(event) =>{modo_juego(event,'conTilde')});
+id_sinTilde.addEventListener("click",(event) =>{modo_juego(event,'sinTilde')});
 
-function modo_juego(){
-    id_conTilde.addEventListener("click", function(event){
-        if (!event.target.classList.contains("active")) {
-            timer = 300;
-            con_tilde = true;
-            filtro_palabras();
-            document.querySelectorAll("input").forEach((element)=>{
-                element.value = "";
-                element.classList.remove("verde");
-                element.classList.remove("amarillo");
-                element.classList.remove("gris");
-            });
-            document.querySelector(".active [data-index='1']").focus();
-            document.querySelector("h2 span").innerHTML = "CON TILDE";
+function modo_juego(event, tipo){
+    if (!event.target.classList.contains("active")) {
+        respuestas = [];
+        color_tablero = [
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0]
+        ];
+        timer = 300;
+        document.querySelectorAll("input").forEach((element)=>{
+            element.value = "";
+            element.classList.remove("verde");
+            element.classList.remove("amarillo");
+            element.classList.remove("gris");
+        });
+        if (fin_juego != null) {
             document.querySelector("fieldset.active").classList.remove("active");
-            document.querySelector("#row0").classList.add("active");
-            document.querySelector("#row0 [data-index='1']").focus();
-            filas_completadas = 0;
-            event.target.classList.add("active");
-            id_sinTilde.classList.remove("active");
-            console.log(event);
         }
-    });
+        fin_juego = false;
+        document.querySelector("#row0").classList.add("active");
+        document.querySelector(".active [data-index='1']").focus();
+        document.querySelector("#row0 [data-index='1']").focus();
+        filas_completadas = 0;
+        event.target.classList.add("active");
 
-    id_sinTilde.addEventListener("click", function(event){
-        if (!event.target.classList.contains("active")){
-            timer = 300;
+        if (tipo == "sinTilde") {
             con_tilde = false;
-            filtro_palabras();
-            document.querySelectorAll("input").forEach((element)=>{
-                element.value = "";
-                element.classList.remove("verde");
-                element.classList.remove("amarillo");
-                element.classList.remove("gris");
-            });
-            document.querySelector(".active [data-index='1']").focus();
-            document.querySelector("h2 span").innerHTML = "SIN TILDE";
-            document.querySelector("fieldset.active").classList.remove("active");
-            document.querySelector("#row0").classList.add("active");
-            document.querySelector("#row0 [data-index='1']").focus();
-            filas_completadas = 0;
-            event.target.classList.add("active");
             id_conTilde.classList.remove("active");
+            document.querySelector("h2 span").innerHTML = "SIN TILDE";
         }
-    });
+        else if(tipo == "conTilde"){
+            con_tilde = true;
+            id_sinTilde.classList.remove("active");
+            document.querySelector("h2 span").innerHTML = "CON TILDE";
+        }
+        filtro_palabras();
+    }
 }
-modo_juego();
 
 function guardar_respuesta(indice){
     respuestas[indice] = [];
@@ -267,15 +272,21 @@ function guardar_respuesta(indice){
     });
     if (row_vacio == false){
         let palabra_completa = respuestas[indice].join("");
-        if (!lista_palabras.includes(palabra_completa.toLowerCase())){
-            alert("La palabra no existe");
+        if (!todas_las_palabras.includes(palabra_completa.toLowerCase())){
+            modal.style.display = "flex";
+            modal.querySelector("h2").innerHTML = "ADVERTENCIA";
+            modal.classList.add("advertencia");
+            modal.querySelector("p").innerHTML = "La palabra no existe";
         }
         else{
             revisar_resultado(respuestas[indice], indice);
         }
     }
     else{
-        alert("Debe completar toda la fila");
+        modal.style.display = "flex";
+        modal.classList.add("advertencia");
+        modal.querySelector("h2").innerHTML = "ADVERTENCIA";
+        modal.querySelector("p").innerHTML = "Debe completar toda la fila";
     }
 }
 
@@ -293,7 +304,7 @@ function revisar_resultado(respuesta, indice){
         }
     });
 
-    let letras_correctas = 0;
+    letras_correctas = 0;
 
     respuesta.forEach(function(item, index){
         if(item != "_"){
@@ -312,7 +323,11 @@ function revisar_resultado(respuesta, indice){
     if (letras_correctas == 5) {
         fin_juego = true;
         setTimeout(function(){
-            modal_ganaste.style.display = "flex";
+            modal.style.display = "flex";
+            modal.classList.remove("advertencia");
+            modal.classList.add("ganaste");
+            modal.querySelector("h2").innerHTML = "GANASTE";
+            modal.querySelector("p").innerHTML = "¡Felicitaciones! la palabra es: " + palabras_aleatorias;
         },500)
     }
     pintar_tablero();
@@ -350,14 +365,18 @@ function cargar_partidas(){
 }
 cargar_partidas();
 
-//Cerrarlo tocando en la X
-span_cierre.onclick = function(){
-    modal.style.display = "none";
-}
 
-//Cerrarlo tocando fuera del modal
-window.onclick = function(event){
-    if (event.target == modal) {
+function cerrar_modal(){
+    //Cerrar tocando en la X
+    span_cierre.onclick = function(){
         modal.style.display = "none";
     }
+
+    //Cerrar tocando fuera del modal
+    window.onclick = function(event){
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 }
+cerrar_modal();

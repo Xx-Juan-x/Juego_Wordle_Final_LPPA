@@ -1,0 +1,31 @@
+.menu li div{
+    background-color: rgb(106, 157, 30);
+    color: white;
+    padding: 10px 2px;
+    text-decoration: none;
+    width: 115px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.menu li div:hover{
+    color: rgb(29, 38, 10);
+    background-color: #baf27f;
+}
+
+.menu li{
+    text-align:center;
+    filter:alpha(opacity=85);
+    -moz-opacity:.85;opacity:.85;
+}
+
+.menu li ul{
+    display: none;
+}
+
+.menu li:hover ul {
+    display:flex;
+    flex-direction: column;
+    position: absolute;
+    cursor: pointer;
+}
