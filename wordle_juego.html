@@ -16,15 +16,16 @@
             <ul class="menu">
                 <li><div>Modo de Juego</div>
                   <ul>
-                    <li><div id="conTilde">Con Tildes</div></li>
-                    <li><div class="active" id="sinTilde">Sin Tildes</div></li>
+                    <li><div id="conTilde">Con Tilde</div></li>
+                    <li><div class="active" id="sinTilde">Sin Tilde</div></li>
                   </ul>
                 </li>
                 <li><div>Partidas</div>
                     <ul>
-                        <li><div>Nueva Partida</div></li>
+                        <li><div id="nuevaPartida">Nueva Partida</div></li>
                         <li><div id="guardarPartida">Guardar Partida</div></li>
-                        <li><div id="cargarPartida">Cargar Partida</div></li>
+                        <li><div id="listaPartidas">Lista de Partidas</div></li>
+                        <li><div id="nuevoJugador">Nuevo Jugador</div></li>
                     </ul>
                 </li>
                 <li><div class="contacto">Contacto</div></li>
@@ -96,5 +97,19 @@
             </section>
         </div>
     </form>
+
+    <table id="table">
+        <thead>
+            <tr>
+                <th>Jugador</th>
+                <th>Tiempo</th>
+                <th>Juego</th>
+                <th>Filas Completadas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td class="datosPartida"></td>
+        </tbody>
+    </table>
 </body>
 </html>

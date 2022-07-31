@@ -143,6 +143,11 @@ div.active{
     cursor: default;
 }
 
+div.nuevaPartida{
+    background-color: rgb(66, 90, 36) !important;
+    cursor: default;
+}
+
 .active input{
     pointer-events: all;
 }
