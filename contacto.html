@@ -9,47 +9,36 @@
     <title>Contacto</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul class="menu">
-                <li><div class="inicio">Inicio</div></li>
-                <li><div>Partidas</div>
-                    <ul>
-                        <li><div id="cargarPartida">Cargar Partida</div></li>
-                    </ul>
-                </li>
-            </ul>
+    <header class="encabezado">
+        <nav class="barra-navegacion">
+            <h1 class="titulo">Wordle</h1>
+            <button class="volver">Volver al Juego</button>
         </nav>
     </header>
 
 
     <main>
-        <form>
-            <h1>Contacto</h1>
-            <div class="contenedor">
-                <div class="contenedor-nombre">
-                    <div class="contenedor-nombre">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-                        <p class="mensaje-error"></p>
-                    </div>
+        <form class="formContacto">
+            <h2 class="titulo-contacto">Contacto</h2>
+            <div class="contenedor-contacto">
+                <div class="contenedor">
+                    <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                    <p class="mensaje-error"></p>
                 </div>
-                <div class="contenedor-mail">
-                    <div class="contenedor-mail">
-                        <label for="mail">Mail</label>
-                        <input type="text" name="mail" id="mail" placeholder="Mail">
-                        <p class="mensaje-error"></p>
-                    </div>
+                <div class="contenedor">
+                    <input type="text" name="mail" id="mail" placeholder="Mail">
+                    <p class="mensaje-error"></p>
                 </div>
-                <div class="contenedor-mensaje">
-                    <div class="contenedor-mensaje">
-                        <label for="mail">Mail</label>
-                        <input type="text" name="mensaje" id="mensaje" placeholder="Mensaje">
-                        <p class="mensaje-error"></p>
-                    </div>
+                <div class="contenedor">
+                    <input type="text" name="mensaje" id="mensaje" placeholder="Mensaje">
+                    <p class="mensaje-error"></p>
                 </div>
             </div>
+            <button class="button-enviar">Enviar</button>
         </form>
     </main>
+    <footer>
+        <h3></h3>
+    </footer>
 </body>
 </html>

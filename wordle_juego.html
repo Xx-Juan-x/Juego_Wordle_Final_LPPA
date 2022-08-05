@@ -7,6 +7,7 @@
     <title>Wordle</title>
     <link rel="stylesheet" href="./CSS/estilos_Wordle.css">
     <link rel="stylesheet" href="./CSS/reset.css">
+    <script src="./JS/palabras.js"></script>
     <script src="./JS/funcionalidad_Wordle.js" defer></script>
 </head>
 <body>
@@ -24,7 +25,7 @@
                     <ul>
                         <li><div id="nuevaPartida">Nueva Partida</div></li>
                         <li><div id="guardarPartida">Guardar Partida</div></li>
-                        <li><div id="listaPartidas">Lista de Partidas</div></li>
+                        <li><div id="listarPartidas">Lista de Partidas</div></li>
                         <li><div id="nuevoJugador">Nuevo Jugador</div></li>
                     </ul>
                 </li>
@@ -105,10 +106,10 @@
                 <th>Tiempo</th>
                 <th>Juego</th>
                 <th>Filas Completadas</th>
+                <th>Cargar Partida</th>
             </tr>
         </thead>
-        <tbody>
-            <td class="datosPartida"></td>
+        <tbody class="datosPartida">
         </tbody>
     </table>
 </body>
