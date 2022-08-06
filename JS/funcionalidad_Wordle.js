@@ -382,13 +382,21 @@ function cargarPartida(index){
     respuestas = partidas[index].respuestas;
     color_tablero = partidas[index].tablero;
     nombre = partidas[index].jugador;
+    /*let color_tablero = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0]
+    ]*/
     pintar_tablero();
-    
     partidas[index].respuestas.forEach((element,index)=>{
         document.querySelectorAll("#row"+index+" input").forEach((input,index_input)=>{
             input.value = "";
-            if(typeof element[index_input] != "undefined")
+            if(typeof element[index_input] != "undefined"){
                 input.value = element[index_input];
+            }
         });
     });
 }

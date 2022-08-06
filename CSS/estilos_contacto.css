@@ -76,6 +76,7 @@ main{
     flex-direction: column;
     text-align: center;
     width: 100%;
+    padding: 10px 5px;
 }
 
 .contenedor{
@@ -92,6 +93,7 @@ input{
     outline: none;
     color: white;
     font-size: 16px;
+    margin: 15px 0;
 }
 
 input::placeholder{
@@ -115,6 +117,14 @@ input::placeholder{
 .button-enviar:hover{
     background-color: #4a6285;
     cursor: pointer;
+}
+
+.mensaje_error{
+    color: red;
+    margin-top: 10px;
+    font-family: monospace;
+    font-size: 12px;
+    text-align: start;
 }
 
 

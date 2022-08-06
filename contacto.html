@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/estilos_contacto.css">
     <link rel="stylesheet" href="./CSS/reset.css">
+    <script src="./JS/contacto.js" defer></script>
     <title>Contacto</title>
 </head>
 <body>
@@ -18,23 +19,23 @@
 
 
     <main>
-        <form class="formContacto">
+        <form id="formContacto" class="formContacto">
             <h2 class="titulo-contacto">Contacto</h2>
             <div class="contenedor-contacto">
                 <div class="contenedor">
                     <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-                    <p class="mensaje-error"></p>
+                    <p class="mensaje-nombre"></p>
                 </div>
                 <div class="contenedor">
                     <input type="text" name="mail" id="mail" placeholder="Mail">
-                    <p class="mensaje-error"></p>
+                    <p class="mensaje-email"></p>
                 </div>
                 <div class="contenedor">
                     <input type="text" name="mensaje" id="mensaje" placeholder="Mensaje">
                     <p class="mensaje-error"></p>
                 </div>
             </div>
-            <button class="button-enviar">Enviar</button>
+            <button class="button-enviar" type="submit">Enviar</button>
         </form>
     </main>
     <footer>
