@@ -15,7 +15,7 @@
         <h1>WORDLE</h1>
         <nav class="barra-navegacion">
             <ul class="menu">
-                <li><div>Modo de Juego</div>
+                <li><div class="juego">Modo de Juego</div>
                   <ul>
                     <li><div id="conTilde">Con Tilde</div></li>
                     <li><div class="active" id="sinTilde">Sin Tilde</div></li>
@@ -25,7 +25,7 @@
                     <ul>
                         <li><div id="nuevaPartida">Nueva Partida</div></li>
                         <li><div id="guardarPartida">Guardar Partida</div></li>
-                        <li><div id="listarPartidas">Lista de Partidas</div></li>
+                        <li><div id="btn-listarPartidas">Lista de Partidas</div></li>
                         <li><div id="nuevoJugador">Nuevo Jugador</div></li>
                     </ul>
                 </li>
@@ -99,18 +99,22 @@
         </div>
     </form>
 
-    <table id="table">
-        <thead>
-            <tr>
-                <th>Jugador</th>
-                <th>Tiempo</th>
-                <th>Juego</th>
-                <th>Filas Completadas</th>
-                <th>Cargar Partida</th>
-            </tr>
-        </thead>
-        <tbody class="datosPartida">
-        </tbody>
-    </table>
+    <div class="listaPartidas" id="table">
+        <div class="contenido-tabla">
+            <table>
+                <thead class="tabla-encabezado">
+                    <tr>
+                        <th>Jugador</th>
+                        <th>Tiempo</th>
+                        <th>Juego</th>
+                        <th>Filas Completadas</th>
+                        <th>Cargar Partida</th>
+                    </tr>
+                </thead>
+                <tbody class="datosPartida">
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

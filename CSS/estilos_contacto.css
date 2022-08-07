@@ -30,7 +30,7 @@ body{
     border: none;
     outline: none;
     color: white;
-    background-color: transparent;
+    background-color: #04204e;
     font-size: 14px;
     font-weight: bold;
     padding: 10px 15px 10px 15px;
@@ -38,7 +38,7 @@ body{
 }
 
 .volver:hover{
-    background-color: #4f72a2;
+    background-color: #062c6a;
     opacity: 0.9;
     cursor: pointer;
 }
@@ -108,14 +108,14 @@ input::placeholder{
     border-radius: 6px;
     border: none;
     color: white;
-    background-color: #5b79a3;
+    background-color: #04204e;
     font-size: 15px;
     font-weight: bold;
     margin-top: 30px;
 }
 
 .button-enviar:hover{
-    background-color: #4a6285;
+    background-color: #062c6a;
     cursor: pointer;
 }
 

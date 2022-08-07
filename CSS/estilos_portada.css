@@ -1,6 +1,6 @@
 body{
     box-sizing: border-box;
-    background-image: url(../Imágenes/gardens.jpg);
+    background-image: url(../Imágenes/fondoContacto.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -17,7 +17,7 @@ main{
 main h1{
     font-size: 80px;
     font-weight: 600;
-    color: greenyellow;
+    color: rgb(222, 222, 222);
     margin-bottom: 10px;
     min-width: 200px;
 }
@@ -26,18 +26,19 @@ main button{
     padding: 15px;
     margin: 10px 0;
     font-size: 40px;
-    color: white;
+    color: rgb(222, 222, 222);
     font-weight: 600;
-    background-color: greenyellow;
+    background-color: #04193B;
     border: none;
     border-radius: 5px;
     min-width: 250px;
     outline: none;
+    opacity: 0.9;
 }
 
 main button:hover{
     cursor: pointer;
-    background-color: rgb(191, 251, 101);
+    background-color: #11496E;
 }
 
 /* Modal (background) */
@@ -103,7 +104,7 @@ main button:hover{
     font-weight: 600;
     margin: 10px;
     text-align: center;
-    color: yellowgreen;
+    color: #03132C;
 }
 
 .input-jugador{
@@ -131,7 +132,7 @@ main button:hover{
     font-size: 15px;
     color: white;
     font-weight: 600;
-    background-color: greenyellow;
+    background-color: #04193B;
     border: none;
     border-radius: 5px;
     outline: none;
@@ -139,7 +140,7 @@ main button:hover{
 
 .boton-ok:hover{
     cursor: pointer;
-    background-color: rgb(191, 251, 101);
+    background-color: #11496E;
 }
 
 .modal.esta-visible{

@@ -1,6 +1,6 @@
 body{
     box-sizing: border-box;
-    background-image: url(../Imágenes/gardens.jpg);
+    background-image: url(../Imágenes/fondoContacto.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -18,7 +18,7 @@ body{
     font-weight: bold;
     text-align: center;
     padding: 20px;
-    color: rgb(106, 157, 30);
+    color: #03132C;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -38,7 +38,7 @@ ul{
 }
 
 .menu li div{
-    background-color: rgb(106, 157, 30);
+    background-color: #04193b;
     color: white;
     padding: 10px 2px;
     text-decoration: none;
@@ -48,14 +48,11 @@ ul{
 }
 
 .menu li div:hover{
-    color: rgb(29, 38, 10);
-    background-color: #baf27f;
+    background-color: #11496E;
 }
 
 .menu li{
     text-align:center;
-    filter:alpha(opacity=85);
-    -moz-opacity:.85;opacity:.85;
 }
 
 .menu li ul{
@@ -71,6 +68,13 @@ ul{
 
 .contacto{
     cursor: pointer;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.juego{
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
 }
 
 .modo_juego{
@@ -135,16 +139,20 @@ input{
     pointer-events: none;
 }
 
+input:focus{
+    border: 3px solid #DD656E;
+}
+
 
 /*Estilos js*/
 
 div.active{
-    background-color: rgb(66, 90, 36) !important;
+    background-color: #010b1a !important;
     cursor: default;
 }
 
 div.nuevaPartida{
-    background-color: rgb(66, 90, 36) !important;
+    background-color: #010b1a !important;
     cursor: default;
 }
 
@@ -279,4 +287,60 @@ div.nuevaPartida{
     font-weight: bold;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
+}
+
+/*Mostrar partida*/
+
+
+.listaPartidas{
+    display: none;
+}
+
+.listaPartidas.listar{
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    top: 30vh;
+    width: 100%;
+}
+
+.listaPartidas.listar .contenido-tabla{
+    display: flex;
+    justify-content: center;
+    background-color: #03132C;
+    color: white;
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.listaPartidas.listar .tabla-encabezado th{
+    font-size: 18px;
+    padding: 0 10px 10px 10px;
+}
+
+.listaPartidas.listar .datosPartida td{
+    padding-top: 10px;
+    font-size: 16px;
+}
+
+.listaPartidas.listar .datosPartida button{
+    padding: 10px 30px;
+    border-radius: 3px;
+    background-color: #04204e;
+    color: white;
+    border: 3px solid #04204e;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    outline: none;
+}
+
+.listaPartidas.listar .datosPartida button:hover{
+    background-color: #062c6a;
+    border: 3px solid #062c6a;
+    outline: none;
 }

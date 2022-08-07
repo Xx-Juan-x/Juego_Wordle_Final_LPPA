@@ -39,7 +39,8 @@ let span_cierre = document.querySelector(".cerrar-modal");
 let nuevo_juego = document.getElementById("nuevaPartida");
 let contacto = document.querySelector(".contacto");
 let nuevo_jugador = document.getElementById("nuevoJugador");
-let listar = document.getElementById("listarPartidas");
+let btn_listar = document.getElementById("btn-listarPartidas");
+let tabla_lista = document.querySelector(".listaPartidas");
 let lista;
 
 nuevo_jugador.addEventListener("click",function(){nuevoJugador()});
@@ -341,19 +342,30 @@ function guardar_partidas(){
             intentos_realizados: filas_completadas
         }
         let partidaGuardada = JSON.parse(localStorage.getItem("partida")) || [];
-        partidaGuardada.push(partida);
+        let jugador_existente = false;
+        partidaGuardada.forEach(function(element, index){
+            if (element.jugador == nombre) {
+                jugador_existente = true;
+                partidaGuardada[index] = partida;
+            }
+        });
+        if (jugador_existente == false) {
+            partidaGuardada.push(partida);
+        }
         let json =  JSON.stringify(partidaGuardada)
         localStorage.setItem("partida", json);
     });
 }
 guardar_partidas();
 
-listar.addEventListener("click", function(){
+btn_listar.addEventListener("click", function(){
     lista_partidas();
 });
 
 function lista_partidas(){
+    document.querySelector(".datosPartida").innerHTML = "";
     var partidas = JSON.parse(localStorage.getItem("partida"));
+    tabla_lista.classList.add("listar");
     console.log(partidas);
     partidas.forEach((element, index) => {
         document.querySelector(".datosPartida").insertAdjacentHTML("beforeend", "<tr><td>"+element.jugador+"</td>" +
@@ -379,17 +391,12 @@ function cargarPartida(index){
         id_sinTilde.classList.remove("active");
         document.querySelector("h2 span").innerHTML = "CON TILDE";
     }
+    filas_completadas = partidas[index].intentos_realizados - 1;
     respuestas = partidas[index].respuestas;
     color_tablero = partidas[index].tablero;
     nombre = partidas[index].jugador;
-    /*let color_tablero = [
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0]
-    ]*/
+    document.querySelector("fieldset.active").classList.remove("active");
+    document.getElementById("row" + (partidas[index].intentos_realizados - 1)).classList.add("active");
     pintar_tablero();
     partidas[index].respuestas.forEach((element,index)=>{
         document.querySelectorAll("#row"+index+" input").forEach((input,index_input)=>{
@@ -399,18 +406,29 @@ function cargarPartida(index){
             }
         });
     });
+    tabla_lista.classList.remove("listar");
 }
 
 function cerrar_modal(){
     //Cerrar tocando en la X
     span_cierre.onclick = function(){
         modal.style.display = "none";
+        document.querySelectorAll(".active input").forEach(function(element){
+            if (element.value.length != 0) {
+                element.focus();
+            }
+        })
     }
 
     //Cerrar tocando fuera del modal
     window.onclick = function(event){
         if (event.target == modal) {
             modal.style.display = "none";
+            document.querySelectorAll(".active input").forEach(function(element){
+                if (element.value.length != 0) {
+                    element.focus();
+                }
+            })
         }
     }
 }
