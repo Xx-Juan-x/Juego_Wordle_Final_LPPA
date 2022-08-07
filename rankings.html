@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rankings de Jugadores</title>
+    <script src="./JS/rankings.js" defer></script>
+</head>
+<body>
+    <header class="encabezado">
+        <h1>WORDLE</h1>
+        <nav class="barra-navegacion">
+            <ul class="menu">
+                <li><div>Ordenar por</div>
+                    <ul>
+                        <li><div id="ordenarFecha">Fecha</div></li>
+                        <li><div id="ordenarPuntaje">Puntaje</div></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="listaPartidas" id="table">
+            <div class="contenido-tabla">
+                    <span class="cerrar-tabla" id="cerrando-tabla">&times;</span>
+                <table>
+                    <thead class="tabla-encabezado">
+                        <tr>
+                            <th>Jugador</th>
+                            <th>Tiempo</th>
+                            <th>Juego</th>
+                            <th>Fecha</th>
+                            <th>Puntaje</th>
+                        </tr>
+                    </thead>
+                    <tbody class="datosPartida">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

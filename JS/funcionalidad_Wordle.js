@@ -29,7 +29,7 @@ let con_tilde = false;
 let id_conTilde = document.getElementById("conTilde");
 let id_sinTilde = document.getElementById("sinTilde");
 let contrareloj = document.getElementById("contrareloj");
-let timer = 300;
+let timer = 0;
 let fin_juego = false;
 let filas_completadas = 0;
 let letras_correctas = 0;
@@ -42,6 +42,10 @@ let nuevo_jugador = document.getElementById("nuevoJugador");
 let btn_listar = document.getElementById("btn-listarPartidas");
 let tabla_lista = document.querySelector(".listaPartidas");
 let lista;
+let span_cerrar_tabla = document.getElementById("cerrando-tabla");
+let fecha_formato = { month: '2-digit', day: '2-digit', year: 'numeric', };
+let fecha_actual = new Date().toLocaleDateString('en-US', fecha_formato);
+
 
 nuevo_jugador.addEventListener("click",function(){nuevoJugador()});
 
@@ -133,9 +137,8 @@ function inicio() {
 function tiempo_juego(){
     nuevo_juego.classList.add("nuevaPartida");
     setInterval(function(){
-        if (timer > 1) {
             if (fin_juego == false) {
-                timer--;
+                timer++;
                 contrareloj.innerHTML = timer;
             }
             if (fin_juego == true && filas_completadas == 6 && letras_correctas != 5) {
@@ -150,21 +153,6 @@ function tiempo_juego(){
                 modal.querySelector("p").innerHTML = "La paralabra ganadora era: " + palabras_aleatorias;
                 nuevo_juego.classList.remove("nuevaPartida");
             }
-        }
-        else{
-            if(fin_juego == false){
-                fin_juego = true;
-                contrareloj.innerHTML = "Fin del juego";
-                document.querySelector("fieldset.active").classList.remove("active");
-                modal.style.display = "flex";
-                modal.classList.remove("advertencia");
-                modal.classList.remove("ganaste");
-                modal.classList.add("perdiste");
-                modal.querySelector("h2").innerHTML = "PERDISTE";
-                modal.querySelector("p").innerHTML = "La paralabra ganadora era: " + palabras_aleatorias;
-                nuevo_juego.classList.remove("nuevaPartida");
-            }
-        }
     },1000);
 }
 tiempo_juego();
@@ -210,7 +198,7 @@ function modo_juego(event, tipo){
             [0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0]
         ];
-        timer = 300;
+        timer = 0;
         document.querySelectorAll("input").forEach((element)=>{
             element.value = "";
             element.classList.remove("verde");
@@ -314,6 +302,18 @@ function revisar_resultado(respuesta, indice){
             modal.querySelector("h2").innerHTML = "GANASTE";
             modal.querySelector("p").innerHTML = "¡Felicitaciones! la palabra es: " + palabras_aleatorias;
             nuevo_juego.classList.remove("nuevaPartida");
+            let modo_juego = (con_tilde ? "conTilde" : "sinTilde");
+            let puntaje = 5000;
+            puntaje = puntaje - (timer * 5);
+            puntaje = puntaje - (filas_completadas * 500);
+            puntaje = (puntaje < 0? 0 : puntaje);
+            let ganador = {
+                jugador: nombre, tiempo: timer, juego: modo_juego, intentos_realizados: filas_completadas, fecha_partida: fecha_actual, puntaje: puntaje
+            }
+            let rankings = JSON.parse(localStorage.getItem("ranking")) || [];
+            rankings.push(ganador);
+            let json =  JSON.stringify(rankings);
+            localStorage.setItem("ranking", json);
         },500)
     }
     pintar_tablero();
@@ -337,8 +337,8 @@ function guardar_partidas(){
             jugador: nombre,
             tiempo: timer,
             juego: modo_juego,
-            tablero:color_tablero,
-            respuestas:respuestas,
+            tablero: color_tablero,
+            respuestas: respuestas,
             intentos_realizados: filas_completadas,
             palabra_ganadora: palabras_aleatorias
         }
@@ -435,6 +435,12 @@ function cerrar_modal(){
 }
 cerrar_modal();
 
+function cerrar_tabla(){
+    span_cerrar_tabla.onclick = function(){
+        tabla_lista.classList.remove("listar");
+    }
+}
+cerrar_tabla();
 
 function contactos(){
     contacto.addEventListener("click", function(){
