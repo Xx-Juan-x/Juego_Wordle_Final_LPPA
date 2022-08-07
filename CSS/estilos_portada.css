@@ -66,8 +66,8 @@ main button:hover{
 
 /* Modal Content/Box */
 .modal-contenedor{
-    background-color: #fefefe;
-    border: 1px solid #888;
+    background-color: #03132C;
+    border: 1px solid  #020c1d;
     margin: auto;
     border-radius: 6px;
     padding: 15px;
@@ -88,13 +88,14 @@ main button:hover{
 /* The Close Button */
 
 .cerrar-modal{
-    color: #aaa;
+    color: white;
     font-size: 28px;
     font-weight: bold;
     border: none;
+    background-color: #03132C;
 }
 .cerrar-modal:hover, .cerrar-modal:focus{
-    color: black;
+    color: #aaa;
     text-decoration: none;
     cursor: pointer;
 }
@@ -104,7 +105,7 @@ main button:hover{
     font-weight: 600;
     margin: 10px;
     text-align: center;
-    color: #03132C;
+    color: rgb(222, 222, 222);
 }
 
 .input-jugador{
@@ -113,7 +114,8 @@ main button:hover{
     padding: 10px 25px;
     margin: 15px;
     font-size: 15px;
-    background: rgb(226, 225, 225);
+    background: #03132C;
+    border: 3px solid white;
     color: white;
     outline: none;
     text-align: center;
@@ -127,7 +129,7 @@ main button:hover{
 }
 
 .boton-ok{
-    padding: 10px 40px;
+    padding: 10px 60px;
     margin: 15px 0;
     font-size: 15px;
     color: white;

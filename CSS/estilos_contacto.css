@@ -35,11 +35,11 @@ body{
     font-weight: bold;
     padding: 10px 15px 10px 15px;
     border-radius: 10px;
+    opacity: 0.9;
 }
 
 .volver:hover{
     background-color: #062c6a;
-    opacity: 0.9;
     cursor: pointer;
 }
 
@@ -96,7 +96,19 @@ input{
     margin: 15px 0;
 }
 
-input::placeholder{
+textarea{
+    resize: none;
+    background-color:  #03132C;
+    border-radius: 2.5px;
+    border: 2px solid white;
+    color: white;
+    font-size: 16px;
+    margin: 15px 0;
+    outline: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+input::placeholder, textarea::placeholder{
     color: white;
     font-weight: bold;
     font-size: 14px;
@@ -112,6 +124,7 @@ input::placeholder{
     font-size: 15px;
     font-weight: bold;
     margin-top: 30px;
+    outline: none;
 }
 
 .button-enviar:hover{

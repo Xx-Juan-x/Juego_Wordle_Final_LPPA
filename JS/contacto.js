@@ -4,6 +4,8 @@ let nombre = document.getElementById("nombre");
 let error_nombre = document.querySelector(".mensaje-nombre");
 let email = document.getElementById("mail");
 let error_email = document.querySelector(".mensaje-email");
+let mensaje = document.getElementById("mensaje");
+let error_mensaje = document.querySelector(".mensaje-error");
 
 console.log(volver_juego);
 
@@ -27,6 +29,7 @@ function validaciones_form(){
             error_nombre.classList.add("mensaje_error");
         }
         else{
+            errorFormulario = false;
             error_nombre.innerHTML = "";
             error_nombre.classList.remove("mensaje_error");
         }
@@ -36,14 +39,28 @@ function validaciones_form(){
             errorFormulario = true;
             error_email.innerHTML = "El formato del email es incorrecto";
             error_email.classList.add("mensaje_error");
-        }else{
+        }
+        else{
+            errorFormulario = false;
             error_email.innerHTML = "";
             error_email.classList.remove("mensaje_error");
         }
 
+        if (mensaje.value.length < 5) {
+            errorFormulario = true;
+            error_mensaje.innerHTML = "El mensaje es demasiado corto";
+            error_mensaje.classList.add("mensaje_error");
+        }
+        else{
+            errorFormulario = false;
+            error_mensaje.innerHTML = "";
+            error_mensaje.classList.remove("mensaje_error");
+        }
 
-
-
+        if (errorFormulario == false) {
+            window.open(`mailto:amarillojuanignacio8@gmail.com?subject=Consulta de ${nombre.value}&body=${mensaje.value}`);
+            form_contacto.reset();
+        }
     })
 }
 validaciones_form();

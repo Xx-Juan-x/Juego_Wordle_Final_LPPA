@@ -339,7 +339,8 @@ function guardar_partidas(){
             juego: modo_juego,
             tablero:color_tablero,
             respuestas:respuestas,
-            intentos_realizados: filas_completadas
+            intentos_realizados: filas_completadas,
+            palabra_ganadora: palabras_aleatorias
         }
         let partidaGuardada = JSON.parse(localStorage.getItem("partida")) || [];
         let jugador_existente = false;
