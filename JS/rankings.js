@@ -1,3 +1,6 @@
+let tabla_rankings = document.querySelector(".listarRanking");
+let span_cerrar_tabla = document.getElementById("cerrando-tabla");
+
 document.getElementById("ordenarFecha").addEventListener("click", function(){
     ordenar_fecha();
 });
@@ -6,6 +9,8 @@ document.getElementById("ordenarPuntaje").addEventListener("click", function(){
 });
 
 function ordenar_fecha(){
+    document.querySelector(".datosRanking").innerHTML = "";
+    tabla_rankings.classList.add("active");
     let rankings = JSON.parse(localStorage.getItem("ranking"));
     let ordenado = false;
     while (ordenado == false) {
@@ -23,17 +28,24 @@ function ordenar_fecha(){
                 }
             }
         });
-        console.log(ordenado);
     }
-    console.log(rankings);
+    rankings.forEach((element, index) => {
+        document.querySelector(".datosRanking").insertAdjacentHTML("beforeend", "<tr><td>"+element.jugador+"</td>" +
+        "<td>"+element.tiempo+"</td>"+
+        "<td>"+element.juego+"</td>"+
+        "<td>"+element.fecha_partida+"</td>"+
+        "<td>"+element.puntaje+"</td></tr>");
+    });
 }
+
 function ordenar_puntaje(){
+    document.querySelector(".datosRanking").innerHTML = "";
+    tabla_rankings.classList.add("active");
     let rankings = JSON.parse(localStorage.getItem("ranking"));
     let ordenado = false;
     while (ordenado == false) {
         ordenado = true;
         rankings.forEach((element, index) => {
-            console.log(index);
             if (typeof rankings[index + 1] != "undefined" && element.puntaje < rankings[index + 1].puntaje) {
                 let array_sig = element;
                 let array_ant = rankings[index + 1];
@@ -42,7 +54,19 @@ function ordenar_puntaje(){
                 ordenado = false;
             }
         });
-        console.log(ordenado);
     }
-    console.log(rankings);
+    rankings.forEach((element, index) => {
+        document.querySelector(".datosRanking").insertAdjacentHTML("beforeend", "<tr><td>"+element.jugador+"</td>" +
+        "<td>"+element.tiempo+"</td>"+
+        "<td>"+element.juego+"</td>"+
+        "<td>"+element.fecha_partida+"</td>"+
+        "<td>"+element.puntaje+"</td></tr>");
+    });
 }
+
+function cerrar_tabla(){
+    span_cerrar_tabla.onclick = function(){
+        tabla_rankings.classList.remove("active");
+    }
+}
+cerrar_tabla();

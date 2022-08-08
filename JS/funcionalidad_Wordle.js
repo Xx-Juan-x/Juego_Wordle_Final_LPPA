@@ -129,6 +129,9 @@ function inicio() {
         fieldset.onkeydown = function(event){
             if (event.key === `Enter`){
                 guardar_respuesta(indice);
+                if(filas_completadas != 0 && fin_juego == false){
+                    guardar_partida.classList.remove("guardarPartida");
+                }
             }
         }
     }
@@ -136,6 +139,7 @@ function inicio() {
 
 function tiempo_juego(){
     nuevo_juego.classList.add("nuevaPartida");
+    guardar_partida.classList.add("guardarPartida");
     setInterval(function(){
             if (fin_juego == false) {
                 timer++;
@@ -331,30 +335,33 @@ nueva_partida();
 
 function guardar_partidas(){
     guardar_partida.addEventListener("click", function(event){
-        let modo_juego = (con_tilde ? "conTilde" : "sinTilde");
-        event.preventDefault();
-        let partida = {
-            jugador: nombre,
-            tiempo: timer,
-            juego: modo_juego,
-            tablero: color_tablero,
-            respuestas: respuestas,
-            intentos_realizados: filas_completadas,
-            palabra_ganadora: palabras_aleatorias
-        }
-        let partidaGuardada = JSON.parse(localStorage.getItem("partida")) || [];
-        let jugador_existente = false;
-        partidaGuardada.forEach(function(element, index){
-            if (element.jugador == nombre) {
-                jugador_existente = true;
-                partidaGuardada[index] = partida;
+        if(filas_completadas != 0 && fin_juego == false){
+            guardar_partida.classList.add("guardarPartida");
+            let modo_juego = (con_tilde ? "conTilde" : "sinTilde");
+            event.preventDefault();
+            let partida = {
+                jugador: nombre,
+                tiempo: timer,
+                juego: modo_juego,
+                tablero: color_tablero,
+                respuestas: respuestas,
+                intentos_realizados: filas_completadas,
+                palabra_ganadora: palabras_aleatorias
             }
-        });
-        if (jugador_existente == false) {
-            partidaGuardada.push(partida);
+            let partidaGuardada = JSON.parse(localStorage.getItem("partida")) || [];
+            let jugador_existente = false;
+            partidaGuardada.forEach(function(element, index){
+                if (element.jugador == nombre) {
+                    jugador_existente = true;
+                    partidaGuardada[index] = partida;
+                }
+            });
+            if (jugador_existente == false) {
+                partidaGuardada.push(partida);
+            }
+            let json =  JSON.stringify(partidaGuardada)
+            localStorage.setItem("partida", json);
         }
-        let json =  JSON.stringify(partidaGuardada)
-        localStorage.setItem("partida", json);
     });
 }
 guardar_partidas();

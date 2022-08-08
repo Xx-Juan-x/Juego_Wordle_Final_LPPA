@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rankings de Jugadores</title>
+    <link rel="stylesheet" href="./CSS/estilos_rankings.css">
+    <link rel="stylesheet" href="./CSS/reset.css">
     <script src="./JS/rankings.js" defer></script>
 </head>
 <body>
@@ -12,17 +14,19 @@
         <h1>WORDLE</h1>
         <nav class="barra-navegacion">
             <ul class="menu">
-                <li><div>Ordenar por</div>
+                <li><div class="border-ordenar">Ordenar por</div>
                     <ul>
                         <li><div id="ordenarFecha">Fecha</div></li>
                         <li><div id="ordenarPuntaje">Puntaje</div></li>
                     </ul>
                 </li>
+                <li><a href="./wordle_juego.html">Volver al Juego</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <div class="listaPartidas" id="table">
+        <h2 class="subtitulo">Rankings</h2>
+        <div class="listarRanking" id="table">
             <div class="contenido-tabla">
                     <span class="cerrar-tabla" id="cerrando-tabla">&times;</span>
                 <table>
@@ -35,7 +39,7 @@
                             <th>Puntaje</th>
                         </tr>
                     </thead>
-                    <tbody class="datosPartida">
+                    <tbody class="datosRanking">
                     </tbody>
                 </table>
             </div>

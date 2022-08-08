@@ -163,6 +163,12 @@ div.nuevaPartida{
     cursor: default;
 }
 
+div.guardarPartida{
+    background-color: #010b1a !important;
+    cursor: default;
+    pointer-events: none;
+}
+
 .active input{
     pointer-events: all;
 }
@@ -314,8 +320,6 @@ div.nuevaPartida{
     top: 5px;
     color: white;
     font-weight: bold;
-    font-size: 17px;
-    font-weight: bold;
     border: none;
 }
 
@@ -326,7 +330,7 @@ div.nuevaPartida{
 }
 
 .listaPartidas.listar .tabla-encabezado th{
-    font-size: 11px;
+    font-size: 12px;
     padding: 0 10px 10px 10px;
     width: 100%;
 }
