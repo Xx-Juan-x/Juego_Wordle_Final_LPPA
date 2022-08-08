@@ -165,8 +165,8 @@ div.nuevaPartida{
 
 div.guardarPartida{
     background-color: #010b1a !important;
-    cursor: default;
     pointer-events: none;
+    cursor: auto !important;
 }
 
 .active input{
