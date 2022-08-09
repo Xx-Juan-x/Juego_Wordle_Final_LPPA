@@ -16,7 +16,7 @@ body{
 .barra-navegacion{
     width: 80%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -45,8 +45,6 @@ body{
 
 main{
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
 }
 
 .formContacto{
@@ -59,8 +57,18 @@ main{
     padding: 30px;
     border-radius: 15px;
     width: 60%;
-    height: 60%;
     border: 1px rgb(16,76,106) solid;
+    margin: auto;
+}
+
+@media(max-width: 480px) {
+    .formContacto{
+        width: 80%;
+        padding: 20px;
+    }
+    .contenedor{
+        margin: 5px 0 5px 0 !important;
+    }
 }
 
 .titulo-contacto{
@@ -105,7 +113,6 @@ textarea{
     font-size: 16px;
     margin: 15px 0;
     outline: none;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 input::placeholder, textarea::placeholder{
@@ -123,7 +130,6 @@ input::placeholder, textarea::placeholder{
     background-color: #04204e;
     font-size: 15px;
     font-weight: bold;
-    margin-top: 30px;
     outline: none;
 }
 
@@ -132,9 +138,12 @@ input::placeholder, textarea::placeholder{
     cursor: pointer;
 }
 
+p{
+    min-height: 12px;
+}
+
 .mensaje_error{
     color: red;
-    margin-top: 10px;
     font-family: monospace;
     font-size: 12px;
     text-align: start;

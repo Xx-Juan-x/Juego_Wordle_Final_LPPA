@@ -54,6 +54,11 @@ ul{
 
 .menu li{
     text-align:center;
+    cursor: default;
+}
+
+.menu li div{
+    cursor: pointer;
 }
 
 .menu li ul{
@@ -155,18 +160,12 @@ input:focus{
 div.active{
     background-color: #010b1a !important;
     cursor: default;
-    border-bottom-left-radius: 6px !important;
 }
 
-div.nuevaPartida{
+div.desabilitado{
     background-color: #010b1a !important;
-    cursor: default;
-}
-
-div.guardarPartida{
-    background-color: #010b1a !important;
-    pointer-events: none;
-    cursor: auto !important;
+    cursor: default !important;
+    pointer-events: none !important;
 }
 
 .active input{
@@ -308,8 +307,6 @@ div.guardarPartida{
     border-radius: 6px;
     text-align: center;
     font-weight: bold;
-    width: 85%;
-    min-width: 320px;
     position: relative;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

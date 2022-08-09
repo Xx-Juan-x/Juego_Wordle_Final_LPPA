@@ -130,7 +130,7 @@ function inicio() {
             if (event.key === `Enter`){
                 guardar_respuesta(indice);
                 if(filas_completadas != 0 && fin_juego == false){
-                    guardar_partida.classList.remove("guardarPartida");
+                    guardar_partida.classList.remove("desabilitado");
                 }
             }
         }
@@ -138,14 +138,17 @@ function inicio() {
 }
 
 function tiempo_juego(){
-    nuevo_juego.classList.add("nuevaPartida");
-    guardar_partida.classList.add("guardarPartida");
+    nuevo_juego.classList.add("desabilitado");
+    guardar_partida.classList.add("desabilitado");
+    btn_listar.classList.remove("desabilitado");
     setInterval(function(){
             if (fin_juego == false) {
                 timer++;
                 contrareloj.innerHTML = timer;
             }
             if (fin_juego == true && filas_completadas == 6 && letras_correctas != 5) {
+                guardar_partida.classList.add("desabilitado");
+                btn_listar.classList.add("desabilitado");
                 fin_juego = null;
                 contrareloj.innerHTML = "Fin del juego";
                 document.querySelector("fieldset.active").classList.remove("active");
@@ -155,7 +158,7 @@ function tiempo_juego(){
                 modal.classList.add("perdiste");
                 modal.querySelector("h2").innerHTML = "PERDISTE";
                 modal.querySelector("p").innerHTML = "La paralabra ganadora era: " + palabras_aleatorias;
-                nuevo_juego.classList.remove("nuevaPartida");
+                nuevo_juego.classList.remove("desabilitado");
             }
     },1000);
 }
@@ -297,6 +300,7 @@ function revisar_resultado(respuesta, indice){
     });
     if (letras_correctas == 5) {
         fin_juego = true;
+        guardar_partida.classList.add("desabilitado");
         document.querySelector("fieldset.active").classList.remove("active");
         setTimeout(function(){
             modal.style.display = "flex";
@@ -305,7 +309,8 @@ function revisar_resultado(respuesta, indice){
             modal.classList.add("ganaste");
             modal.querySelector("h2").innerHTML = "GANASTE";
             modal.querySelector("p").innerHTML = "¡Felicitaciones! la palabra es: " + palabras_aleatorias;
-            nuevo_juego.classList.remove("nuevaPartida");
+            nuevo_juego.classList.remove("desabilitado");
+            btn_listar.classList.add("desabilitado");
             let modo_juego = (con_tilde ? "conTilde" : "sinTilde");
             let puntaje = 5000;
             puntaje = puntaje - (timer * 5);
@@ -336,7 +341,7 @@ nueva_partida();
 function guardar_partidas(){
     guardar_partida.addEventListener("click", function(event){
         if(filas_completadas != 0 && fin_juego == false){
-            guardar_partida.classList.add("guardarPartida");
+            guardar_partida.classList.add("desabilitado");
             let modo_juego = (con_tilde ? "conTilde" : "sinTilde");
             event.preventDefault();
             let partida = {
@@ -405,6 +410,11 @@ function cargarPartida(index){
     nombre = partidas[index].jugador;
     document.querySelector("fieldset.active").classList.remove("active");
     document.getElementById("row" + (partidas[index].intentos_realizados - 1)).classList.add("active");
+    document.querySelectorAll("#inputform input").forEach(function(element){
+        element.classList.remove("amarillo");
+        element.classList.remove("verde");
+        element.classList.remove("gris");
+    });
     pintar_tablero();
     partidas[index].respuestas.forEach((element,index)=>{
         document.querySelectorAll("#row"+index+" input").forEach((input,index_input)=>{
