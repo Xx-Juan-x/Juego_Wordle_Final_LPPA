@@ -428,7 +428,6 @@ function cargarPartida(index){
 }
 
 function cerrar_modal(){
-    //Cerrar tocando en la X
     span_cierre.onclick = function(){
         modal.style.display = "none";
         document.querySelectorAll(".active input").forEach(function(element){
@@ -438,7 +437,6 @@ function cerrar_modal(){
         })
     }
 
-    //Cerrar tocando fuera del modal
     window.onclick = function(event){
         if (event.target == modal) {
             modal.style.display = "none";
