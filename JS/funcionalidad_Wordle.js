@@ -404,6 +404,8 @@ function cargarPartida(index){
         id_sinTilde.classList.remove("active");
         document.querySelector("h2 span").innerHTML = "CON TILDE";
     }
+    palabras_aleatorias = partidas[index].palabra_ganadora;
+    console.log(palabras_aleatorias);
     filas_completadas = partidas[index].intentos_realizados - 1;
     respuestas = partidas[index].respuestas;
     color_tablero = partidas[index].tablero;
