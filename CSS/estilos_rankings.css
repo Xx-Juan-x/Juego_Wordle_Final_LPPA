@@ -116,14 +116,6 @@ main{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-@media(max-width: 480px) {
-    .listarRanking.active .contenido-tabla{
-        width: 90%;
-        margin: auto;
-    }
-}
-
-
 .cerrar-tabla{
     position: absolute;
     right: 2px;
@@ -157,3 +149,9 @@ main{
     border-right: 1px solid white;
 }
 
+@media(max-width: 480px) {
+    .listarRanking.active .contenido-tabla{
+        width: 90%;
+        margin: auto;
+    }
+}
