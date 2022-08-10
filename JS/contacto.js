@@ -25,7 +25,7 @@ function validaciones_form(){
 
         if(nombre.value.length < 3){
             errorFormulario = true;
-            error_nombre.innerHTML = "Debe contener al menos 3 caracteres";
+            error_nombre.innerHTML = "Debe contener al menos 3 caracteres alfanuméricos";
             error_nombre.classList.add("mensaje_error");
         }
         else{

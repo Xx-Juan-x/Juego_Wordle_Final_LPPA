@@ -41,7 +41,6 @@ let contacto = document.querySelector(".contacto");
 let nuevo_jugador = document.getElementById("nuevoJugador");
 let btn_listar = document.getElementById("btn-listarPartidas");
 let tabla_lista = document.querySelector(".listaPartidas");
-let lista;
 let span_cerrar_tabla = document.getElementById("cerrando-tabla");
 let fecha_formato = { month: '2-digit', day: '2-digit', year: 'numeric', };
 let fecha_actual = new Date().toLocaleDateString('en-US', fecha_formato);
@@ -53,7 +52,6 @@ function nuevoJugador(){
     localStorage.removeItem("nombre");
     window.location.href = "index.html";
 }
-
 
 function pintar_tablero(){
     for (let indice_fila = 0; indice_fila < fila; indice_fila++) {
@@ -195,6 +193,9 @@ id_conTilde.addEventListener("click",(event) =>{modo_juego(event,'conTilde')});
 id_sinTilde.addEventListener("click",(event) =>{modo_juego(event,'sinTilde')});
 
 function modo_juego(event, tipo){
+    nuevo_juego.classList.add("desabilitado");
+    guardar_partida.classList.add("desabilitado");
+    btn_listar.classList.remove("desabilitado");
     if (!event.target.classList.contains("active")) {
         respuestas = [];
         color_tablero = [
@@ -213,6 +214,9 @@ function modo_juego(event, tipo){
             element.classList.remove("gris");
         });
         fin_juego = false;
+        if(fin_juego == false && letras_correctas != 5 && filas_completadas != 6){
+            document.querySelector("fieldset.active").classList.remove("active");
+        }
         document.querySelector("#row0").classList.add("active");
         document.querySelector(".active [data-index='1']").focus();
         document.querySelector("#row0 [data-index='1']").focus();
